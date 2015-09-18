@@ -875,3 +875,9 @@ nnoremap <F2> :set invpaste paste?<CR>
 " map last substitute execution to normal mode & operator
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
+
+" Handling arrow keys while using with tmux
+inoremap <Esc>A <up>
+inoremap <Esc>B <down>
+inoremap <Esc>C <right>
+inoremap <Esc>D <left>
