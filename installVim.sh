@@ -55,23 +55,25 @@ while true; do
     fi 
     case $yn in 
         [Yy]* ) echo -e "Yes selected";
-                if [ -f /usr/bin/vi.default ]; then 
-                    sudo rm /usr/bin/vi.default
-                fi
-                if [ -f /usr/bin/vim.default ]; then 
-                    sudo rm /usr/bin/vim.default
-                fi
-                sudo ln -s /etc/alternatives/vi /usr/bin/vi.default
-                sudo ln -s /etc/alternatives/vim /usr/bin/vim.default 
-                if [ -f /usr/bin/vi ]; then 
-                    sudo rm /usr/bin/vi 
+                # if [ -f /usr/bin/vi.default ]; then 
+                #    sudo rm /usr/bin/vi.default
+                #fi
+                #if [ -f /usr/bin/vim.default ]; then 
+                #    sudo rm /usr/bin/vim.default
+                #fi
+                #sudo ln -s /etc/alternatives/vi /usr/bin/vi.default
+                #sudo ln -s /etc/alternatives/vim /usr/bin/vim.default 
+                VI_IN_USE=`which vi`
+                if [ -f $VI_IN_USE ]; then
+                    sudo mv $VI_IN_USE ./vi_backup
                 fi 
-                if [ -f /usr/bin/vim ]; then 
-                    sudo rm /usr/bin/vim 
+                VIM_IN_USE=`which vim`
+                if [ -f $VIM_IN_USE ]; then 
+                    sudo mv $VIM_IN_USE ./vim_backup
                 fi 
                 if [ -f $HOME/.vim/vimscripts/vi_overlay ]; then 
-                    sudo ln -s $VIM_ROOT/vimscripts/vi_overlay /usr/bin/vi
-                    sudo ln -s $VIM_ROOT/vimscripts/vi_overlay /usr/bin/vim 
+                    sudo ln -s $VIM_ROOT/vimscripts/vi_overlay $VI_IN_USE
+                    sudo ln -s $VIM_ROOT/vimscripts/vi_overlay $VIM_IN_USE 
                     sudo chmod +x $VIM_ROOT/vimscripts/vi_overlay
                 else 
                     echo -e "WARNING!!! $HOME/.vim/vimscripts/vi_overlay does not exist..."
@@ -82,4 +84,3 @@ while true; do
         * ) echo -e "Please select yes or no";;
     esac
 done
-
