@@ -550,7 +550,7 @@ autocmd VimEnter * SignatureToggleSigns
 autocmd VimEnter * NERDTree .
 autocmd VimEnter * helptags ~/.vim/doc
 autocmd VimEnter * TagbarOpen
-autocmd VimEnter * exe 2 . "wincmd w"
+"autocmd VimEnter * exe 2 . "wincmd w"
 autocmd VimEnter * call CheckIfMain()
 
 " =========== Leaving commands =========="
